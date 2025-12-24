@@ -13,6 +13,10 @@ const mongoose = require('mongoose') // Import Mongoose library to interact with
 
 const workoutRoutes = require('./routes/workouts') // Import workout-related routes from an external file
 
+// Register user routes
+const userRoutes = require('./routes/user') // Import user-related routes from an external file
+app.use('/api/user', userRoutes) // Use the imported user routes for any requests to /api/user
+
 //Middleware // Comment: Middleware functions run on every request to process or log data
 app.use((req, res, next) => { // Define a middleware function that executes for all incoming requests
   // console.log('new request made:'); // Log a message indicating a new request has been received
