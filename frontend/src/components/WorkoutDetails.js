@@ -3,6 +3,7 @@ import { useAuthContext } from '../hooks/useAuthContext'
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import { MdDelete } from 'react-icons/md'
 
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext()
@@ -27,12 +28,17 @@ const WorkoutDetails = ({ workout }) => {
   }
 
   return (
-    <div className="workout-details">
-      <h4>{workout.title}</h4>
-      <p><strong>Load (kg): </strong>{workout.load}</p>
-      <p><strong>Reps: </strong>{workout.reps}</p>
-      <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
-      <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
+    <div className="workout-details bg-white rounded-lg shadow-md p-6 mb-4 relative hover:shadow-lg transition-shadow">
+      <h4 className="text-xl font-semibold text-green-600 mb-2">{workout.title}</h4>
+      <p className="text-gray-600 mb-1"><strong className="text-gray-800">Load (kg):</strong> {workout.load}</p>
+      <p className="text-gray-600 mb-2"><strong className="text-gray-800">Reps:</strong> {workout.reps}</p>
+      <p className="text-sm text-gray-500">{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
+      <button 
+        onClick={handleClick}
+        className="absolute top-4 right-4 cursor-pointer bg-gray-100 hover:bg-red-100 rounded-full p-2 text-gray-600 hover:text-red-600 transition-colors"
+      >
+        <MdDelete size={20} />
+      </button>
     </div>
   )
 }
